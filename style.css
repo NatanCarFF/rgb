@@ -1,0 +1,300 @@
+body {
+    font-family: 'Poppins', sans-serif; /* Modern font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #e6f3e6, #f0fff0); /* Subtle green gradient background */
+    color: #333;
+}
+
+.container {
+    background-color: #fff;
+    padding: 40px; /* Increased padding */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    text-align: center;
+    width: 420px; /* Adjusted width */
+    max-width: 90%; /* Ensure responsiveness */
+    border: 1px solid #e0e0e0; /* Subtle border */
+}
+
+h1, h2 {
+    color: #228B22; /* Main accent color */
+    margin-bottom: 30px;
+    font-weight: 600; /* Slightly bolder headings */
+}
+
+.color-control {
+    margin-bottom: 25px; /* Increased margin */
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Increased gap */
+}
+
+.color-control label {
+    font-weight: bold;
+    color: #555;
+    min-width: 70px; /* Adjusted min-width */
+    text-align: left;
+    font-size: 1.05em;
+}
+
+.color-control input[type="range"] {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 12px; /* Thicker slider track */
+    border-radius: 6px;
+    background: #e0e0e0; /* Lighter track color */
+    outline: none;
+    opacity: 0.9;
+    transition: opacity .2s, box-shadow 0.2s;
+}
+
+.color-control input[type="range"]:hover {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+}
+
+.color-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px; /* Larger thumb */
+    height: 24px; /* Larger thumb */
+    border-radius: 50%;
+    background: #228B22; /* Default, will be overridden by JS for specific colors */
+    cursor: grab; /* Cursor change */
+    border: 3px solid #fff; /* White border for contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.2s, transform 0.2s;
+}
+
+.color-control input[type="range"]::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.05); /* Slight scale on active */
+}
+
+/* Specific thumb colors (using more harmonious colors with #228B22) */
+#red::-webkit-slider-thumb {
+    background: #e74c3c; /* Still a clear red */
+}
+
+#green::-webkit-slider-thumb {
+    background: #228B22; /* Uses the main green color */
+}
+
+#blue::-webkit-slider-thumb {
+    background: #3498db; /* Still a clear blue */
+}
+
+.color-control span {
+    font-weight: bold;
+    color: #333;
+    min-width: 40px; /* Adjusted min-width */
+    text-align: right;
+    font-size: 1.1em;
+}
+
+.color-display {
+    margin-top: 40px; /* Increased margin */
+}
+
+#color-box {
+    width: 160px; /* Slightly larger */
+    height: 160px; /* Slightly larger */
+    border: 3px solid #eee; /* Thicker, lighter border */
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 auto 20px auto;
+    background-color: #000;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Shadow for the box */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#hex-code {
+    font-size: 1.5em; /* Larger font */
+    font-weight: 700; /* Bolder */
+    color: #2c3e50;
+    letter-spacing: 1px; /* Spacing for hex code */
+}
+
+hr {
+    border: none; /* Reset border */
+    height: 2px; /* Thicker line */
+    background: linear-gradient(to right, #e0e0e0, #a8d5a8, #e0e0e0); /* Green-tinged gradient divider */
+    margin: 50px 0; /* Increased margin */
+    border-radius: 1px;
+}
+
+/* New styles for predefined colors */
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px; /* Increased margin */
+    flex-wrap: wrap;
+    gap: 12px; /* Adjusted gap */
+}
+
+.tab-button {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    padding: 10px 20px; /* Increased padding */
+    cursor: pointer;
+    border-radius: 25px; /* More pill-like */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 0.95em;
+    color: #666;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); /* More subtle shadow */
+    font-weight: 500;
+}
+
+.tab-button:hover {
+    background-color: #e8e8e8;
+    transform: translateY(-3px); /* More pronounced lift */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12); /* Enhanced shadow on hover */
+}
+
+.tab-button.active {
+    background-color: #228B22; /* Main accent color */
+    color: white;
+    border-color: #228B22;
+    box-shadow: 0 4px 10px rgba(34, 139, 34, 0.4); /* Green shadow */
+    transform: translateY(-1px); /* Slight lift for active */
+}
+
+#predefined-colors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Increased gap */
+    margin-top: 20px;
+}
+
+.predefined-color-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Increased gap */
+    width: 90px; /* Slightly wider */
+    text-align: center;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.predefined-color-item:hover {
+    background-color: #f9f9f9;
+}
+
+.predefined-color-box {
+    width: 55px; /* Slightly larger */
+    height: 55px; /* Slightly larger */
+    border: 1px solid #eee;
+    border-radius: 8px; /* Slightly more rounded */
+    cursor: pointer;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.predefined-color-box:hover {
+    transform: translateY(-4px); /* More pronounced lift */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+.predefined-color-name {
+    font-size: 0.85em; /* Slightly larger font */
+    color: #444;
+    font-weight: 600; /* Bolder */
+}
+
+.predefined-color-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Increased gap */
+    margin-top: 5px;
+}
+
+.predefined-color-hex {
+    font-size: 0.8em;
+    color: #777;
+    font-family: 'Roboto Mono', monospace; /* Monospace for hex code */
+}
+
+.copy-button {
+    background-color: #228B22; /* Uses the main green color */
+    color: white;
+    border: none;
+    padding: 6px 10px; /* Adjusted padding */
+    border-radius: 5px; /* More rounded */
+    cursor: pointer;
+    font-size: 0.75em; /* Slightly larger font */
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.copy-button:hover {
+    background-color: #1e7a1e; /* Darker green on hover */
+    transform: translateY(-1px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+    }
+
+    h1, h2 {
+        font-size: 1.8em;
+    }
+
+    .color-control label {
+        min-width: 55px;
+        font-size: 1em;
+    }
+
+    .color-control span {
+        min-width: 35px;
+        font-size: 1em;
+    }
+
+    #color-box {
+        width: 120px;
+        height: 120px;
+    }
+
+    #hex-code {
+        font-size: 1.2em;
+    }
+
+    .tabs {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .tab-button {
+        width: 90%;
+        padding: 12px 15px;
+    }
+
+    .predefined-color-item {
+        width: 70px;
+        gap: 3px;
+    }
+
+    .predefined-color-box {
+        width: 45px;
+        height: 45px;
+    }
+
+    .predefined-color-name, .predefined-color-hex {
+        font-size: 0.75em;
+    }
+
+    .copy-button {
+        padding: 4px 6px;
+        font-size: 0.65em;
+    }
+}
